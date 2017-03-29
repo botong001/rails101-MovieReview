@@ -22,13 +22,16 @@ class GroupsController < ApplicationController
     redirect_to groups_path
   else
     render :new
-  end 
+  end
   end
 
   def update
     @group = Group.find(params[:id])
-    @group.update(group_params)
+    if @group.update(group_params)
     redirect_to groups_path, notice: "更新成功"
+  else
+    render :edit
+  end 
   end
 
   def destroy
