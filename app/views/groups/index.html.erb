@@ -1,19 +1,19 @@
 <div class="col-md-12">
   <div class="group">
-    <%= link_to("New Movie", new_group_path, class: "btn btn-primary pull-right") %>
+    <%= link_to("添加新电影", new_group_path, class: "btn btn-primary pull-right") %>
   </div>
   <table class="table table-hover">
     <thead>
       <tr>
-        <td>#</td>
-        <td>Title</td>
-        <td>Description</td>
+
+        <td>电影名称</td>
+        <td>电影简介</td>
       </tr>
     </thead>
     <tbody>
       <% @groups.each do |group| %>
         <tr>
-        <td>#</td>
+
         <td><%= link_to(group.title, group_path(group)) %></td>
         <td><%= group.description %></td>
         <td>
