@@ -48,9 +48,9 @@ class GroupsController < ApplicationController
 
     if !current_user.is_member_of?(@group)
       current_user.join!(@group)
-      flash[:notice] = "收藏该电影成功！"
+      flash[:notice] = "可以写影评了！"
     else
-      flash[:warning] = "你已经可以写该电影的影评了！"
+      flash[:warning] = "你已收藏该电影！"
     end
     redirect_to group_path(@group)
   end
@@ -60,9 +60,9 @@ class GroupsController < ApplicationController
 
     if current_user.is_member_of?(@group)
       current_user.quit!(@group)
-      flash[:alert] = "该电影已移除收藏夹！"
+      flash[:alert] = "该电影已移除收藏合集！"
     else
-      flash[:warning] = "你没有收藏该电影，怎么移除收藏夹 XD"
+      flash[:warning] = "你没有收藏该电影，怎么移除收藏合集 XD"
     end
 
     redirect_to group_path(@group)

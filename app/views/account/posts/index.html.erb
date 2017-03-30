@@ -19,7 +19,7 @@
         <td> <%= post.group.title %> </td>
         <td> <%= post.updated_at %> </td>
         <td> <%= link_to('修改影评', edit_group_post_path(post.group, post), class: "btn btn-default btn-xs") %></td>
-        <td> <%= link_to('删除影评', group_post_path(post.group, post), method: :delete, data: { confirm: "Are you suer?" }, class: "btn btn-default btn-xs") %></td>
+        <td> <%= link_to('删除影评', group_post_path(post.group, post), method: :delete, data: { confirm: "你确定删除影评吗?" }, class: "btn btn-default btn-xs") %></td>
       </tr>
       <% end %>
     </tbody>

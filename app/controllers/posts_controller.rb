@@ -13,15 +13,44 @@ class PostsController < ApplicationController
     @post.user = current_user
 
     if @post.save
+      current_user.join!(@group)
+
       redirect_to group_path(@group)
     else
-      render :new
+      render :new, flash[:warning] = "请先登录！"
+    end
+  end
+
+    def edit
+      @group = Group.find(params[:group_id])
+      @post = Post.find(params[:id])
+      @post.group = @group
     end
 
-end
+    def update
+      @group = Group.find(params[:group_id])
+      @post = Post.find(params[:id])
+      @post.group = @group
+      @post.user = current_user
+
+      if @post.update(post_params)
+        redirect_to account_posts_path, notice: "影评更新成功"
+      else
+        render :edit
+      end
+    end
+
+    def destroy
+      @group = Group.find(params[:group_id])
+      @post = Post.find(params[:id])
+      @post.group = @group
+      @post.destroy
+      flash[:alert] = "影评已删除"
+      redirect_to account_posts_path
+    end
 
 private
 def post_params
   params.require(:post).permit(:content)
 end
-end 
+end
