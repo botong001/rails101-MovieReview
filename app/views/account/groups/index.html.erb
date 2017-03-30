@@ -1,0 +1,27 @@
+<div class="col-md-12">
+  <h2 class="text-center"> 我收藏的电影列表 </h2>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th> · </th>
+        <th> 电影名称 </th>
+        <th> 电影简介 </th>
+        <th> 影评总数 </th>
+        <th> 最近一篇影评的生成时间 </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @groups.each do |group| %>
+        <tr>
+        <td> · </td>
+        <td> <%= link_to(group.title, group_path(group)) %> </td>
+        <td> <%= group.description %> </td>
+        <td> <%= group.posts.count %> </td>
+        <td> <%= group.updated_at %> </td>
+        </tr>
+        <% end %>
+        </tbody>
+        </table>
+        </div>
