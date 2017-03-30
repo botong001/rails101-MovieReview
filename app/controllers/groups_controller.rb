@@ -42,6 +42,31 @@ class GroupsController < ApplicationController
     redirect_to groups_path
   end
 
+  def join
+    @group = Group.find(params[:id])
+
+    if !current_user.is_member_of?(@group)
+      current_user.join!(@group)
+      flash[:notice] = "收藏该电影成功！"
+    else
+      flash[:warning] = "你已经可以写该电影的影评了！"
+    end
+    redirect_to group_path(@group)
+  end
+
+  def quit
+    @group = Group.find(params[:id])
+
+    if current_user.is_member_of?(@group)
+      current_user.quit!(@group)
+      flash[:alert] = "该电影已移除收藏夹！"
+    else
+      flash[:warning] = "你没有收藏该电影，怎么移除收藏夹 XD"
+    end
+
+    redirect_to group_path(@group)
+  end 
+
 
 private
 
